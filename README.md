@@ -6,4 +6,5 @@ npm install on both frontend and server in order to install all the npm packages
 
 Create and .env file which will have a variable, "MONGO_URI" and assign the connection string of the database.
 
+Have a Wonderful Day.
 Peace!
