@@ -1,0 +1,42 @@
+.headerHead{
+    background-color: var(--secondaryColor);
+    width: 100vw;
+    height: 20vh;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftHead{
+    width: 13%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo{
+    max-height: 100%;
+}
+
+#logoName{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+#loginButton{
+    width: 100px;
+    height: 35px;
+    background-color: var(--buttonColor);
+    padding: 2px;
+    border: 1px solid var(--buttonColor);
+    border-radius: 5px;
+    color: #FFFFFF;
+    margin-right: 20px;
+    cursor: pointer;
+}

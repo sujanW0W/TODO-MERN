@@ -1,0 +1,73 @@
+.mainSection{
+    margin: 20px;
+    padding: 20px;
+    
+}
+
+.inputArea{
+    width: 100%;
+    display:flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+#inputText{
+    width: 50%;
+    height: 40px;
+    border: 1px solid black;
+    padding: 0px 5px;
+}
+
+.submit{
+    width: 100px;
+    height: 40px;
+
+    background-color: var(--buttonColor);
+    padding: 2px;
+    border: 1px solid var(--buttonColor);
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.tasksArea{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.taskStack{
+    width: 50%;
+
+}
+
+.cardBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.cardLeft{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#taskName{
+    padding-left: 10px;
+}
+
+#deleteIcon{
+    cursor: pointer;
+}
