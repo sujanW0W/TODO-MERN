@@ -1,4 +1,4 @@
-<h1>TODO-MERN</h1>
+#TODO-MERN
 
 This is my first MERN project- Basic and simple TODO applicaion.
 This is just a CRUD application. I have not worked on authentication, error handling and other sercurity stuffs.
