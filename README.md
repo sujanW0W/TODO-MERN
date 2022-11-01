@@ -9,8 +9,4 @@ To run this project, take following steps:
 2. Create and .env file which will have a variable, "MONGO_URI" and assign the connection string of the database.
 
 Have a Wonderful Day.
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a7daad0f506b697869f262899a41b2fe8c496bd
 Peace!
