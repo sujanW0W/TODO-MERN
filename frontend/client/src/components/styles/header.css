@@ -29,14 +29,34 @@
     font-weight: 600;
 }
 
-#loginButton{
+.loginDiv{
     width: 100px;
     height: 35px;
     background-color: var(--buttonColor);
     padding: 2px;
     border: 1px solid var(--buttonColor);
     border-radius: 5px;
-    color: #FFFFFF;
     margin-right: 20px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginButton{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.loggedInDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.loggedInDiv p{
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    font-weight: 600;
 }

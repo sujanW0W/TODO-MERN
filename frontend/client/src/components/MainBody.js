@@ -1,48 +1,58 @@
-import {useEffect, useState} from 'react';
-import axios from 'axios'
-import './styles/mainBody.css'
+import { useEffect, useState } from "react"
+import axios from "axios"
+import "./styles/mainBody.css"
 
-import InputSection from './InputSection'
-import TaskArea from './TaskArea'
+import InputSection from "./InputSection"
+import TaskArea from "./TaskArea"
+import jwt from "jwt-decode"
 
-const MainBody = () => {
+const MainBody = ({ token, setToken }) => {
+    const url = "http://localhost:5000/api/v1/tasks"
+    const decoded = token && jwt(token)
 
-    const url = "http://localhost:5000/api/v1/tasks";
-
-    const submitted = async (taskName) =>{
+    const submitted = async (taskName) => {
         try {
-            await axios.post(url, {name: taskName})
-            fetchData()
+            if (token) {
+                await axios.post(url, {
+                    name: taskName,
+                    userID: decoded.userID,
+                })
+                fetchData()
+            } else alert("Login First")
         } catch (error) {
-            console.log(error);
+            console.log("Login First")
         }
     }
 
-    const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState();
+    const [tasks, setTasks] = useState([])
+    const [loading, setLoading] = useState()
 
-    async function fetchData(){
+    async function fetchData() {
         setLoading(true)
-        try{
-            const {data} = await axios.get(url)
-            setLoading(false);
-            setTasks(data)
-        }
-        catch(error){
-            console.log(error);
+        try {
+            if (token) {
+                const { data } = await axios.get(`${url}/${decoded.userID}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                setLoading(false)
+                setTasks(data)
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
-    useEffect( () => {       
-        fetchData();
+    useEffect(() => {
+        fetchData()
     }, [])
 
-    return(
+    return (
         <section className="mainSection">
-            <InputSection submitted = {submitted} fetchData={fetchData}/>
+            <InputSection submitted={submitted} fetchData={fetchData} />
             <hr />
-            <TaskArea loading={loading} tasks={tasks} fetchData={fetchData}/>
-            
+            <TaskArea loading={loading} tasks={tasks} fetchData={fetchData} />
         </section>
     )
 }
