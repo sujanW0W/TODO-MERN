@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express()
-
+require("express-async-errors")
 app.use(express.json())
 
 require("dotenv").config()
@@ -8,6 +8,7 @@ require("dotenv").config()
 const users = require("./routes/users")
 const tasks = require("./routes/tasks")
 const notFound = require("./middleware/notFound")
+const errorHandle = require("./middleware/errorHandle")
 
 const cors = require("./CORS/corsSetting")
 app.use(cors)
@@ -18,6 +19,7 @@ app.use("/api/v1/tasks", tasks)
 
 //Not Found
 app.use(notFound)
+app.use(errorHandle)
 
 const port = process.env.PORT || 5000
 

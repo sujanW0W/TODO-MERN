@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken")
+const CustomAPIError = require("../errors/customError")
 
 const userAuthorization = (req, res, next) => {
     const authToken = req.headers.authorization
     if (!authToken || !authToken.startsWith("Bearer ")) {
-        return res.status(401).json({ msg: "Authorization Failed." })
+        throw new CustomAPIError("Authorization Failed.", 401)
     }
 
     try {
@@ -11,7 +12,7 @@ const userAuthorization = (req, res, next) => {
         const tokenVerify = jwt.verify(token, process.env.JWT_SECRET)
         next()
     } catch (error) {
-        res.status(401).json({ msg: "Authorization Verification Failed." })
+        throw new CustomAPIError("Authorization Verification Failed.", 401)
     }
 }
 

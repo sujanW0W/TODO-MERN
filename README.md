@@ -2,6 +2,7 @@
 
 This is my first MERN project- Basic and simple TODO applicaion.
 This application also has a simple Register/Login system, that makes a user account and log users into the app.
+This application has a custom error-handler, for handling errors and exceptions.
 
 This is just a basic CRUD application. I have worked on simple authentication using JWT(JSON Web Token).
 
