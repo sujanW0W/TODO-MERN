@@ -8,7 +8,7 @@ This is just a basic CRUD application. I have worked on simple authentication us
 
 To run this project, take following steps:
 
-1. npm install on both frontend and server in order to install all the npm packages required to run the project.
+1. npm install on both frontend and server in order to install all the npm dependencies required to run the project.
 2. Create a .env file which will have two variables:
     1. "MONGO_URI": assign the connection string of the database(MONGO-DB).
     2. "JWT_SECRET": assign a secret string or key. This string or key is for signing the web token for authentication.
