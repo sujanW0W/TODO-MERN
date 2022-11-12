@@ -68,6 +68,12 @@ h2{
     padding-left: 10px;
 }
 
-#deleteIcon{
+.taskIcons{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.deleteIcon{
     cursor: pointer;
 }

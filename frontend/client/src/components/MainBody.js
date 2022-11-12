@@ -6,7 +6,7 @@ import InputSection from "./InputSection"
 import TaskArea from "./TaskArea"
 import jwt from "jwt-decode"
 
-const MainBody = ({ token, setToken }) => {
+const MainBody = ({ token, setToken, getTaskID }) => {
     const url = "http://localhost:5000/api/v1/tasks"
     const decoded = token && jwt(token)
 
@@ -52,7 +52,12 @@ const MainBody = ({ token, setToken }) => {
         <section className="mainSection">
             <InputSection submitted={submitted} fetchData={fetchData} />
             <hr />
-            <TaskArea loading={loading} tasks={tasks} fetchData={fetchData} />
+            <TaskArea
+                loading={loading}
+                tasks={tasks}
+                fetchData={fetchData}
+                getTaskID={getTaskID}
+            />
         </section>
     )
 }

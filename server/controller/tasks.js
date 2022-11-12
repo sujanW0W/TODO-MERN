@@ -10,6 +10,22 @@ const getAllTasks = async (req, res) => {
     }
 }
 
+const getTask = async (req, res) => {
+    const { taskID } = req.params
+    try {
+        const task = await Task.findById(taskID)
+
+        if (!task)
+            return res
+                .status(404)
+                .json({ msg: `task with id: ${taskID} not found.` })
+
+        res.status(200).json(task)
+    } catch (error) {
+        res.status(500).json({ msg: "Could not fetch Data." })
+    }
+}
+
 const createTask = async (req, res) => {
     try {
         const task = await Task.create(req.body)
@@ -29,7 +45,7 @@ const updateTask = async (req, res) => {
         if (!task)
             return res.status(404).json({ msg: `Not Found with id: ${taskID}` })
 
-        res.status(200).json({ success: true, msg: "Update Successful." })
+        res.status(200).json({ success: true, msg: "Update Successful.", task })
     } catch (error) {
         res.status(500).json({ msg: "Internal Server Error" })
     }
@@ -50,6 +66,7 @@ const deleteTask = async (req, res) => {
 
 module.exports = {
     getAllTasks,
+    getTask,
     createTask,
     updateTask,
     deleteTask,

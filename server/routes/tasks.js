@@ -3,6 +3,7 @@ const router = express.Router()
 
 const {
     getAllTasks,
+    getTask,
     createTask,
     updateTask,
     deleteTask,
@@ -11,6 +12,8 @@ const {
 const userAuthorization = require("../middleware/auth")
 
 router.get("/:userID", userAuthorization, getAllTasks)
+
+router.get("/edit/:taskID", userAuthorization, getTask)
 
 router.post("/", createTask)
 

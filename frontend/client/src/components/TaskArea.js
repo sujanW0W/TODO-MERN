@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard"
 
-const TaskArea = ({ loading, tasks, fetchData }) => {
+const TaskArea = ({ loading, tasks, fetchData, getTaskID }) => {
     const token = localStorage.getItem("token")
     const taskArray =
         tasks.length === 0
@@ -11,6 +11,7 @@ const TaskArea = ({ loading, tasks, fetchData }) => {
                           key={task._id}
                           task={task}
                           fetchData={fetchData}
+                          getTaskID={getTaskID}
                       />
                   )
               })
