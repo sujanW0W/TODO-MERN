@@ -17,5 +17,7 @@ The user must log into the application in order to Add tasks.
 The task will be added to the user's account.
 The homepage will get all the tasks that are added by the user.
 
+Suggestions are appreciated.
+
 Have a Wonderful Day.
 Peace!
