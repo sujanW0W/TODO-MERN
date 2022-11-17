@@ -42,7 +42,7 @@ const Login = () => {
     return (
         <div className="loginSection" style={background}>
             <div className="loginBody">
-                <h1>Login</h1>
+                <h2>Login</h2>
                 <input
                     type="text"
                     className="inputText"
@@ -68,7 +68,7 @@ const Login = () => {
                 </button>
 
                 <div className="askRegister">
-                    <p>Don't Have an account?</p>
+                    <h1>Don't Have an account?</h1>
                     <div className="loginDiv">
                         <Link id="loginButton" to="/register">
                             Register

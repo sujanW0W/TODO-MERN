@@ -42,7 +42,7 @@ const Register = () => {
     return (
         <div className="loginSection" style={background}>
             <div className="loginBody">
-                <h1>Register</h1>
+                <h2>Register</h2>
                 <input
                     type="text"
                     className="inputText"
@@ -68,7 +68,7 @@ const Register = () => {
                 </button>
 
                 <div className="askRegister">
-                    <p>Already Have an account?</p>
+                    <h1>Already Have an account?</h1>
                     <div className="loginDiv">
                         <Link id="loginButton" to="/login">
                             Login

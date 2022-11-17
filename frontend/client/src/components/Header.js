@@ -16,10 +16,10 @@ const Header = ({ token, setToken }) => {
     return (
         <>
             <section className="headerHead">
-                <div className="leftHead">
+                <Link to="/" className="leftHead">
                     <img src={todoLogo} alt="Logo" className="logo" />
-                    <p id="logoName">TODO</p>
-                </div>
+                    {/* <p id="logoName">TODO</p> */}
+                </Link>
 
                 {token ? (
                     <div className="loggedInDiv">

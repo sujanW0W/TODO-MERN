@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import "./styles/editTask.css"
+import Header from "./Header"
 
 const EditTask = ({ taskID }) => {
     const navigate = useNavigate()
@@ -27,6 +28,8 @@ const EditTask = ({ taskID }) => {
         }
     }
 
+    const [token, setToken] = useState(localStorage.getItem("token"))
+
     useEffect(() => {
         getTask()
     }, [])
@@ -36,29 +39,40 @@ const EditTask = ({ taskID }) => {
     }
 
     const submitEdit = async () => {
-        await axios.patch(`http://localhost:5000/api/v1/tasks/${taskID}`, {
-            name,
-        })
+        await axios.patch(
+            `http://localhost:5000/api/v1/tasks/${taskID}`,
+            {
+                name,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        )
         navigate("/")
     }
-    console.log(name)
+
     return (
-        <div className="editContainer">
-            <div className="editSection">
-                <h1>Edit Task</h1>
-                <input
-                    type="text"
-                    className="inputText"
-                    placeholder="Enter Task"
-                    name="edit"
-                    value={name}
-                    onChange={handleChange}
-                />
-                <button className="submit" onClick={submitEdit}>
-                    Edit
-                </button>
+        <>
+            <Header token={token} setToken={setToken} />
+            <div className="editContainer">
+                <div className="editSection">
+                    <h2 id="taskHeader">Edit Task</h2>
+                    <input
+                        type="text"
+                        className="inputText"
+                        placeholder="Enter Task"
+                        name="edit"
+                        value={name}
+                        onChange={handleChange}
+                    />
+                    <button className="submit" onClick={submitEdit}>
+                        Edit
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

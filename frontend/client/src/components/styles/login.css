@@ -2,16 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .loginBody{
-    width: 50vw;
-    height: 50vh;
+    width: 80vw;
+    height: 80vh;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
+    gap: 20px;
 
 }
 

@@ -1,6 +1,6 @@
 .editContainer{
-    width: 100vw;
-    height: 100vh;
+    margin: 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,12 +9,11 @@
 }
 
 .editSection{
-    width: 50vw;
+    width: 100%;
     height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-  
-    border: 1px #575757 solid;
 }
+

@@ -1,67 +1,56 @@
 const Task = require("../model/tasks")
+const { StatusCodes } = require("http-status-codes")
+const { UnAuthorized, BadRequest, NotFound } = require("../errors")
 
 const getAllTasks = async (req, res) => {
     const { userID } = req.params
-    try {
-        const tasks = await Task.find({ userID })
-        res.status(200).json(tasks)
-    } catch (error) {
-        res.status(500).json({ msg: "Could not Fetch Data." })
-    }
+
+    const tasks = await Task.find({ userID })
+    if (tasks.length === 0) throw new NotFound(`No tasks Found.`)
+    res.status(StatusCodes.OK).json(tasks)
 }
 
 const getTask = async (req, res) => {
     const { taskID } = req.params
-    try {
-        const task = await Task.findById(taskID)
 
-        if (!task)
-            return res
-                .status(404)
-                .json({ msg: `task with id: ${taskID} not found.` })
+    const task = await Task.findById(taskID)
 
-        res.status(200).json(task)
-    } catch (error) {
-        res.status(500).json({ msg: "Could not fetch Data." })
-    }
+    if (!task) throw new NotFound(`Task with id: ${taskID} not Found.`)
+
+    res.status(StatusCodes.OK).json(task)
 }
 
 const createTask = async (req, res) => {
-    try {
-        const task = await Task.create(req.body)
-        res.status(201).json({ success: true, data: req.body })
-    } catch (error) {
-        res.status(500).json({ msg: error })
-    }
+    const task = await Task.create(req.body)
+    res.status(StatusCodes.CREATED).json({ success: true, data: req.body })
 }
 
 const updateTask = async (req, res) => {
     const { id: taskID } = req.params
-    try {
-        const task = await Task.findByIdAndUpdate(taskID, req.body, {
-            new: true,
-        })
 
-        if (!task)
-            return res.status(404).json({ msg: `Not Found with id: ${taskID}` })
+    const task = await Task.findByIdAndUpdate(taskID, req.body, {
+        new: true,
+    })
 
-        res.status(200).json({ success: true, msg: "Update Successful.", task })
-    } catch (error) {
-        res.status(500).json({ msg: "Internal Server Error" })
-    }
+    if (!task) throw new NotFound(`Task with id: ${taskID} not Found.`)
+
+    res.status(StatusCodes.OK).json({
+        success: true,
+        msg: "Update Successful.",
+        task,
+    })
 }
 
 const deleteTask = async (req, res) => {
     const { id: taskID } = req.params
-    try {
-        const task = await Task.findByIdAndDelete(taskID)
-        if (!task)
-            return res.status(404).json({ msg: `Not found with id: ${taskID}` })
 
-        res.status(200).json({ success: true, msg: "Delete Successful." })
-    } catch (error) {
-        res.status(500).json({ msg: "Internal Server Error." })
-    }
+    const task = await Task.findByIdAndDelete(taskID)
+    if (!task) throw new NotFound(`Task with id: ${taskID} not Found.`)
+
+    res.status(StatusCodes.OK).json({
+        success: true,
+        msg: "Delete Successful.",
+    })
 }
 
 module.exports = {

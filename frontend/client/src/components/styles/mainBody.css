@@ -37,6 +37,10 @@
     align-items: center;
 }
 
+#taskHeader{
+    text-decoration: underline;
+}
+
 h2{
     font-size: 2rem;
     font-weight: 600;
@@ -68,12 +72,38 @@ h2{
     padding-left: 10px;
 }
 
+.active{
+    text-decoration: line-through;
+}
+
 .taskIcons{
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+.editIcon{
+    cursor: pointer;
+}
+a:visited{
+    color: inherit;
+}
+
 .deleteIcon{
     cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .inputArea{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }    
+    .inputText{
+        width: 100%;
+    }
+
+    .taskStack{
+        width: 100%;
+    }
 }

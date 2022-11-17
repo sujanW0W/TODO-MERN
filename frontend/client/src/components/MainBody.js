@@ -13,10 +13,14 @@ const MainBody = ({ token, setToken, getTaskID }) => {
     const submitted = async (taskName) => {
         try {
             if (token) {
-                await axios.post(url, {
-                    name: taskName,
-                    userID: decoded.userID,
-                })
+                await axios.post(
+                    url,
+                    {
+                        name: taskName,
+                        userID: decoded.userID,
+                    },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                )
                 fetchData()
             } else alert("Login First")
         } catch (error) {

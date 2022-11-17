@@ -1,23 +1,25 @@
+require("dotenv").config()
+require("express-async-errors")
+const cors = require("cors")
+
 const express = require("express")
 const app = express()
-require("express-async-errors")
-app.use(express.json())
 
-require("dotenv").config()
-
-const users = require("./routes/users")
-const tasks = require("./routes/tasks")
+const userAuthorization = require("./middleware/auth")
 const notFound = require("./middleware/notFound")
 const errorHandle = require("./middleware/errorHandle")
 
-const cors = require("./CORS/corsSetting")
-app.use(cors)
+// routers
+const users = require("./routes/users")
+const tasks = require("./routes/tasks")
+
+//middlewares
+app.use(cors())
+app.use(express.json())
 
 app.use("/api/v1/users", users)
+app.use("/api/v1/tasks", userAuthorization, tasks)
 
-app.use("/api/v1/tasks", tasks)
-
-//Not Found
 app.use(notFound)
 app.use(errorHandle)
 

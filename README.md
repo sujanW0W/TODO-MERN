@@ -12,6 +12,7 @@ To run this project, take following steps:
 2. Create a .env file which will have two variables:
     1. "MONGO_URI": assign the connection string of the database(MONGO-DB).
     2. "JWT_SECRET": assign a secret string or key. This string or key is for signing the web token for authentication.
+    3. "JWT_LIFETIME": assign number of days.(eg: '30d')
 
 The user must log into the application in order to Add tasks.
 The task will be added to the user's account.

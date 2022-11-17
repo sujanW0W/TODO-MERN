@@ -9,9 +9,17 @@ const TaskCard = ({ task, fetchData, getTaskID }) => {
     const [check, setCheck] = useState(task.completion)
 
     const handleChange = async () => {
-        await axios.patch(`http://localhost:5000/api/v1/tasks/${task._id}`, {
-            completion: !check,
-        })
+        await axios.patch(
+            `http://localhost:5000/api/v1/tasks/${task._id}`,
+            {
+                completion: !check,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            }
+        )
         setCheck(!check)
     }
 
@@ -22,7 +30,14 @@ const TaskCard = ({ task, fetchData, getTaskID }) => {
     const deleteTask = async () => {
         try {
             const { data } = await axios.delete(
-                `http://localhost:5000/api/v1/tasks/${task._id}`
+                `http://localhost:5000/api/v1/tasks/${task._id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
             )
             console.log(data)
             fetchData()
@@ -35,11 +50,13 @@ const TaskCard = ({ task, fetchData, getTaskID }) => {
         <div className="cardBox">
             <div className="cardLeft">
                 <Checkbox checked={check} onChange={handleChange} />
-                <p id="taskName">{task.name}</p>
+                <p id="taskName" className={check ? "active" : null}>
+                    {task.name}
+                </p>
             </div>
             <div className="taskIcons">
                 <Link to="editTask" onClick={handleEdit}>
-                    <EditIcon className="deleteIcon" />
+                    <EditIcon className="editIcon" />
                 </Link>
                 <DeleteIcon className="deleteIcon" onClick={deleteTask} />
             </div>
